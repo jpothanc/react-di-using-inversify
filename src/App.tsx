@@ -6,13 +6,13 @@ const App = () => {
   //Instantiating calculator object from the dependency injection container.
   const calculator = dicontainer.get<ICalculator>("Calculator");
   const [sum, setSum] = useState(0);
-  const [input, setData] = useState({
+  const [input, setInput] = useState({
     input1: 0,
     input2: 0,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setData({
+    setInput({
       ...input,
       [e.target.name]: parseInt(e.target.value),
     });
