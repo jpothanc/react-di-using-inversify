@@ -36,7 +36,7 @@ input {
   width: 300px; /* Adjust the width as needed */
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 0px;
   outline: none;
   background-color: black;
@@ -47,8 +47,12 @@ input {
   width: 320px; /* Adjust the width as needed */
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   text-transform: uppercase;
-
+  background-color: rgb(14, 127, 233);
   outline: none;
+  transition: 1s;
+}
+.btn:hover {
+  border: 2px solid rgb(207, 151, 38);
 }

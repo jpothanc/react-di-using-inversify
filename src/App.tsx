@@ -1,13 +1,22 @@
 import { dicontainer } from "./services/Container";
 import { ICalculator } from "./services/Calculator";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const App = () => {
+  //Instantiating calculator object from the dependency injection container.
   const calculator = dicontainer.get<ICalculator>("Calculator");
-
-  const [num1, setNum1] = useState(0);
-  const [num2, setNum2] = useState(0);
   const [sum, setSum] = useState(0);
+  const [input, setData] = useState({
+    input1: 0,
+    input2: 0,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setData({
+      ...input,
+      [e.target.name]: parseInt(e.target.value),
+    });
+  };
 
   return (
     <>
@@ -19,31 +28,24 @@ const App = () => {
           Calculator
           <input
             type="number"
-            id="num1"
-            placeholder="number1"
-            onChange={(e) => setNum1(parseInt(e.target.value))}
-            value={num1}
+            name="input1"
+            onChange={handleChange}
+            value={input.input1}
           ></input>
           <input
             type="number"
-            placeholder="number2"
-            id="num2"
-            onChange={(e) => setNum2(parseInt(e.target.value))}
-            value={num2}
+            name="input2"
+            onChange={handleChange}
+            value={input.input2}
           ></input>
           <button
             className="btn"
-            onClick={() => setSum(calculator.add(num1, num2))}
+            //calling calculator add
+            onClick={() => setSum(calculator.add(input.input1, input.input2))}
           >
             Add
           </button>
-          <input
-            type="number"
-            id="sum"
-            placeholder="sum"
-            onChange={(e) => setSum(parseInt(e.target.value))}
-            value={sum}
-          ></input>
+          <input type="number" name="sum" value={sum}></input>
         </header>
       </div>
     </>
